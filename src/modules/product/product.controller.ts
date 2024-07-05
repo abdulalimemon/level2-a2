@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
 import { ProductServices } from './product.service';
+import productValidationSchema from './product.validation';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
     const { product: productData } = req.body;
 
-    const result = await ProductServices.createProductIntoDB(productData);
+    // zod validation
+    const zodParsedData = productValidationSchema.parse(productData);
+
+    const result = await ProductServices.createProductIntoDB(zodParsedData);
 
     res.status(200).json({
       success: true,
@@ -21,6 +25,6 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const StudentControllers = {
+export const ProductControllers = {
   createProduct,
 };
