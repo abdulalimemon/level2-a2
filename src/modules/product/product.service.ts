@@ -1,5 +1,6 @@
 import { TProduct } from './product.interface';
 import { ProductModel } from './product.model';
+import { ObjectId } from 'mongodb';
 
 const createProductIntoDB = async (product: TProduct) => {
   const result = await ProductModel.create(product);
@@ -12,7 +13,13 @@ const getAllProductsFromDB = async () => {
   return result;
 };
 
+const getSingleProductFromDB = async (_id: string) => {
+  const result = await ProductModel.findOne({ _id: new ObjectId(_id) });
+  return result;
+};
+
 export const ProductServices = {
   createProductIntoDB,
-  getAllProductsFromDB
+  getAllProductsFromDB,
+  getSingleProductFromDB,
 };
