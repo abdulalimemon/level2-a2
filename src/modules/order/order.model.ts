@@ -16,7 +16,10 @@ const orderSchema = new Schema<TOrder>({
   price: {
     type: Number,
     required: [true, 'Product price is required.'],
-    trim: true,
+  },
+  quantity: {
+    type: Number,
+    required: [true, 'Product quantity is required.'],
   },
 });
 
