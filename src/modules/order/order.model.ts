@@ -12,6 +12,7 @@ const orderSchema = new Schema<TOrder>({
     type: String,
     required: [true, 'Product id is required.'],
     trim: true,
+    unique: true,
   },
   price: {
     type: Number,
