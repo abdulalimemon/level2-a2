@@ -30,6 +30,7 @@ const productValidationSchema = z.object({
     .array(variantsValidationSchema)
     .min(1, { message: 'Product variants is required.' }),
   inventory: inventoryValidationSchema.required(),
+  isDeleted: z.boolean().default(false),
 });
 
 // Export the Zod schema
